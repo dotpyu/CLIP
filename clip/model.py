@@ -160,7 +160,8 @@ class LayerNorm(nn.LayerNorm):
 
     def forward(self, x: torch.Tensor):
         orig_type = x.dtype
-        ret = super().forward(x.type(torch.float32))
+        x = x.float()
+        ret = super().forward(x)
         return ret.type(orig_type)
 
 
